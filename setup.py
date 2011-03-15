@@ -2,7 +2,7 @@ from distutils.core import setup
 
 
 setup(
-    name = "boxes",
+    name = "django-boxes",
     version = "0.1.dev2",
     author = "Eldarion",
     author_email = "development@eldarion.com",
