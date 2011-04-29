@@ -26,5 +26,6 @@ class BoxNode(template.Node):
         return mark_safe(box.content.strip())
 
 
+@register.tag
 def box(parser, token):
     return BoxNode.handle_token(parser, token)
