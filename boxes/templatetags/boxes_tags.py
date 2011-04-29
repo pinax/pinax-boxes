@@ -14,6 +14,7 @@ class BoxNode(template.Node):
     
     @classmethod
     def handle(cls, parser, token):
+        bits = token.split_contents()
         return cls(bits[1])
     
     def __init__(self, label):
