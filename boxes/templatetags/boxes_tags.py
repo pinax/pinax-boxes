@@ -42,14 +42,14 @@ class BoxNode(template.Node):
         self.kwargs = kwargs
     
     def render(self, context):
+        label = self.label.resolve(context)
         args = [arg.resolve(context) for arg in self.args]
         kwargs = dict([(smart_str(k, "ascii"), v.resolve(context))
                         for k, v in self.kwargs.items()])
+        
         show_edit_link = can_edit(*args, **kwargs)
         
-        box, created = Box.objects.get_or_create(
-            label=self.label
-        )
+        box, created = Box.objects.get_or_create(label=label)
         
         content = box.content.strip()
         
