@@ -8,3 +8,7 @@ class Box(models.Model):
     
     def __unicode__(self):
         return self.label
+    
+    class Meta:
+        verbose_name_plural = "boxes"
+
