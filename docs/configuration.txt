@@ -1,0 +1,7 @@
+Configuration
+=============
+
+There is one optional ``settings.py`` constant and that is ``BOXES_CAN_EDIT_CALLABLE``
+which you set to a string to the full import path of a callable in your project
+that takes ``*args`` and ``**kwargs`` and return a ``boolean`` on whether or not
+to allow editing of the box via front-end.
