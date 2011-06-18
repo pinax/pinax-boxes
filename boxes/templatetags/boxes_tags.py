@@ -49,16 +49,27 @@ class BoxNode(template.Node):
         
         show_edit_link = can_edit(*args, **kwargs)
         
-        box, created = Box.objects.get_or_create(label=label)
-        
-        content = box.content.strip()
+        # @@@ created_by and last_updated_by fields are now required but how do we get them?
+        # @@@ change this to only fetch and if it doesn't exist make the edit link a create
+        try:
+            box = Box.objects.get(label=label)
+            content = box.content.strip()
+        except Box.DoesNotExist:
+            box = None
+            content = ""
         
         if len(content) == 0:
             content = _("<p>No content for this box has been created yet.</p>")
         
         if show_edit_link:
-            url = reverse("box_edit", args=[box.pk])
-            content += " <a href=\"%s\" class=\"boxes-edit-link\" rel=\"facebox\">%s</a>" % (url, unicode(_("Edit")))
+            if box is None:
+                url = reverse("box_create", args=[label])
+                link_text = unicode(_("Create"))
+            else:
+                url = reverse("box_edit", args=[box.pk])
+                link_text = unicode(_("Edit"))
+            
+            content += " <a href=\"%s\" class=\"boxes-edit-link\" rel=\"facebox\">%s</a>" % (url, link_text)
         
         return mark_safe(content)
 
