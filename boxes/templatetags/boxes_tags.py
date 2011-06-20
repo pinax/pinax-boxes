@@ -61,6 +61,8 @@ class BoxNode(template.Node):
         if len(content) == 0:
             content = _("<p>No content for this box has been created yet.</p>")
         
+        # @@@ I think we should encode the args/kwargs into a querstring parameter to that the views can use them
+        #     to also call can_edit to protect at the view level
         if show_edit_link:
             if box is None:
                 url = reverse("box_create", args=[label])
