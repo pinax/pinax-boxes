@@ -21,8 +21,8 @@ def get_auth_vars(request):
 def box_edit(request, pk):
     box = get_object_or_404(Box, pk=pk)
     if request.method == "POST":
-        if not can_edit(**get_auth_vars(request)):
-            return HttpResponseForbidden()
+        #if not can_edit(**get_auth_vars(request)):
+        #    return HttpResponseForbidden()
         
         form = BoxForm(request.POST, instance=box)
         if form.is_valid():
@@ -40,8 +40,8 @@ def box_edit(request, pk):
 
 def box_create(request, label):
     if request.method == "POST":
-        if not can_edit(**get_auth_vars(request)):
-            return HttpResponseForbidden()
+        #if not can_edit(**get_auth_vars(request)):
+        #    return HttpResponseForbidden()
         
         form = BoxForm(request.POST)
         if form.is_valid():

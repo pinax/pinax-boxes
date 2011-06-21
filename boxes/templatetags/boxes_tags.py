@@ -49,8 +49,6 @@ class BoxNode(template.Node):
         
         show_edit_link = can_edit(*args, **kwargs)
         
-        # @@@ created_by and last_updated_by fields are now required but how do we get them?
-        # @@@ change this to only fetch and if it doesn't exist make the edit link a create
         try:
             box = Box.objects.get(label=label)
             content = box.content.strip()
