@@ -16,13 +16,13 @@ that are required.  A minimal integration can work like this:
             "boxes",
         )
 
-2.  Add the ``boxes`` urls to the end of your root urlconf.  Your urlconf
+2.  Add the ``boxes`` URLs to the end of your root URLconf.  Your URLconf
     will look something like::
     
-        urlpatterns = patterns('',
+        urlpatterns = patterns("",
             # ...
-            (r"^admin/(.*)", admin.site.root),
-            (r"^boxes/", include("boxes.urls")),
+            url(r"^admin/", include(admin.site.urls)),
+            url(r"^boxes/", include("boxes.urls")),
         )
 
 3.  Add two templates under ``templates/boxes/``. One called ``refresh.html``
@@ -38,5 +38,5 @@ that are required.  A minimal integration can work like this:
     
         {% box label [*args **kwargs] %}
     
-    WHere the ``*args`` and ``**kwargs`` are passed to the authorizatoin function,
+    Where the ``*args`` and ``**kwargs`` are passed to the authorizatoin function,
     if not supplied no edit link will ever appear.
