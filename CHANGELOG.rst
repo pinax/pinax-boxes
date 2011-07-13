@@ -1,15 +1,9 @@
-0.1.dev1005
-===========
-
- * removed revision tracking
-
-0.1.dev1003
-===========
+1.0b1
+=====
 
  * added authorization checks on views
  * removed get_or_create in tag and only create now on initial submission of form.
  * added auditing
- * added revision tracking
 
 Migrations
 ~~~~~~~~~~
