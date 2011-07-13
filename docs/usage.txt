@@ -1,0 +1,42 @@
+Using django-boxes
+==================
+
+
+Basics
+------
+
+To integrate ``django-boxes`` with your site, there are a few things
+that are required.  A minimal integration can work like this:
+
+1.  List this application in the ``INSTALLED_APPS`` portion of your settings
+    file.  Your settings file will look something like::
+   
+        INSTALLED_APPS = (
+            # ...
+            "boxes",
+        )
+
+2.  Add the ``boxes`` urls to the end of your root urlconf.  Your urlconf
+    will look something like::
+    
+        urlpatterns = patterns('',
+            # ...
+            (r"^admin/(.*)", admin.site.root),
+            (r"^boxes/", include("boxes.urls")),
+        )
+
+3.  Add two templates under ``templates/boxes/``. One called ``refresh.html``
+    that has nothing in context and the other, ``box_edit.html`` that has a
+    ``form`` variable in context.
+
+4.  Wherever you want to display a content box::
+    
+        {% load boxes_tags %}
+    
+    Then, use the ``box`` tag to display the content in addition to edit
+    links if authorized::
+    
+        {% box label [*args **kwargs] %}
+    
+    WHere the ``*args`` and ``**kwargs`` are passed to the authorizatoin function,
+    if not supplied no edit link will ever appear.
