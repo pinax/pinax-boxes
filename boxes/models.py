@@ -1,4 +1,4 @@
-from datetime import datetime
+import datetime
 
 from django.db import models
 
@@ -37,7 +37,7 @@ class Revision(models.Model):
     content = models.TextField()
     orig_created_by = models.ForeignKey(User, related_name="orig_revisions")
     
-    created_on = models.DateTimeField(default=datetime.now)
+    created_on = models.DateTimeField(default=datetime.datetime.now)
     created_by = models.ForeignKey(User, related_name="revisions")
     
     def __unicode__(self):

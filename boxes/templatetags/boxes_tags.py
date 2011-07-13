@@ -18,8 +18,9 @@ class BoxNode(template.Node):
     def handle(cls, parser, token):
         bits = token.split_contents()
         if len(bits) < 2:
-            raise template.TemplateSyntaxError("'box' takes at least one argument "
-                                               " (label of the content to display)")
+            raise template.TemplateSyntaxError(
+                "'box' takes at least one argument (label of the content to display)"
+            )
         args = []
         kwargs = {}
         label = parser.compile_filter(bits[1])
@@ -44,8 +45,10 @@ class BoxNode(template.Node):
     def render(self, context):
         label = self.label.resolve(context)
         args = [arg.resolve(context) for arg in self.args]
-        kwargs = dict([(smart_str(k, "ascii"), v.resolve(context))
-                        for k, v in self.kwargs.items()])
+        kwargs = dict([
+            (smart_str(k, "ascii"), v.resolve(context))
+            for k, v in self.kwargs.items()
+        ])
         
         show_edit_link = can_edit(*args, **kwargs)
         
@@ -59,8 +62,7 @@ class BoxNode(template.Node):
         if len(content) == 0:
             content = _("<p>No content for this box has been created yet.</p>")
         
-        # @@@ I think we should encode the args/kwargs into a querstring parameter to that the views can use them
-        #     to also call can_edit to protect at the view level
+        # @@@ encode args/kwargs into querystring
         if show_edit_link:
             if box is None:
                 url = reverse("box_create", args=[label])
