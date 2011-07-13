@@ -1,3 +1,8 @@
+0.1.dev1005
+-----------
+
+ * removed revision tracking
+
 0.1.dev1003
 -----------
 
@@ -15,32 +20,14 @@ Notes
   User). It also includes a new model, Revision::
   
     ALTER TABLE "boxes_box" ADD COLUMN "created_by_id" integer not null REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED;
-    ALTER TABLE "boxes_box" ADD COLUMN "last_updated_by_id" integer not null REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED;
-    
-    CREATE TABLE "boxes_revision" (
-        "id" serial NOT NULL PRIMARY KEY,
-        "box_id" integer NOT NULL REFERENCES "boxes_box" ("id") DEFERRABLE INITIALLY DEFERRED,
-        "label" varchar(100) NOT NULL,
-        "content" text NOT NULL,
-        "orig_created_by_id" integer NOT NULL REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED,
-        "created_on" timestamp with time zone NOT NULL,
-        "created_by_id" integer NOT NULL REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED
-    );
-    
     CREATE INDEX "boxes_box_created_by_id" ON "boxes_box" ("created_by_id");
-    CREATE INDEX "boxes_box_last_updated_by_id" ON "boxes_box" ("last_updated_by_id");
-    CREATE INDEX "boxes_revision_box_id" ON "boxes_revision" ("box_id");
-    CREATE INDEX "boxes_revision_label" ON "boxes_revision" ("label");
-    CREATE INDEX "boxes_revision_label_like" ON "boxes_revision" ("label" varchar_pattern_ops);
-    CREATE INDEX "boxes_revision_orig_created_by_id" ON "boxes_revision" ("orig_created_by_id");
-    CREATE INDEX "boxes_revision_created_by_id" ON "boxes_revision" ("created_by_id");
 
 * Templates.
   
   A ``boxes/box_create.html`` was added that can be identical to ``boxes/box_edit.html``
   just with a different action url.
 
-* Urls.
+* URLs.
   
   A new ``boxes_create`` url was added to support the rendering of the create
   form as well as processing the POST of that form. It takes a ``[-\w]+`` parameter

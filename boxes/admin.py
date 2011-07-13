@@ -1,7 +1,6 @@
 from django.contrib import admin
 
-from boxes.models import Box, Revision
+from boxes.models import Box
 
 
 admin.site.register(Box)
-admin.site.register(Revision)
