@@ -1,4 +1,5 @@
 from django import template
+from django.core.exceptions import ImproperlyConfigured
 from django.core.urlresolvers import reverse
 from django.utils.safestring import mark_safe
 from django.utils.encoding import smart_str
@@ -46,7 +47,7 @@ class BoxNode(template.Node):
         try:
             request = context["request"]
         except KeyError:
-            raise Exception("aaaa")
+            raise ImproperlyConfigured('django-boxes requires the use of "django.core.context_processors.request" in TEMPLATE_CONTEXT_PROCESSORS')
         
         label = self.label.resolve(context)
         args = [arg.resolve(context) for arg in self.args]
