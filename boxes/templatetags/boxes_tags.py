@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.template.defaulttags import kwarg_re
 
 from boxes.models import Box
-from boxes.authorization import can_edit
+from boxes.authorization import load_can_edit
 
 
 register = template.Library()
@@ -43,6 +43,11 @@ class BoxNode(template.Node):
         self.kwargs = kwargs
     
     def render(self, context):
+        try:
+            request = context["request"]
+        except KeyError:
+            raise Exception("aaaa")
+        
         label = self.label.resolve(context)
         args = [arg.resolve(context) for arg in self.args]
         kwargs = dict([
@@ -50,7 +55,7 @@ class BoxNode(template.Node):
             for k, v in self.kwargs.items()
         ])
         
-        show_edit_link = can_edit(*args, **kwargs)
+        show_edit_link = load_can_edit()(request, *args, **kwargs)
         
         try:
             box = Box.objects.get(label=label)

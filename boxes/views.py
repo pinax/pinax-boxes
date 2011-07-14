@@ -2,7 +2,7 @@ from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 
-from boxes.authorization import can_edit
+from boxes.authorization import load_can_edit
 from boxes.forms import BoxForm
 from boxes.models import Box
 
@@ -21,7 +21,7 @@ def get_auth_vars(request):
 def box_edit(request, pk):
     box = get_object_or_404(Box, pk=pk)
     if request.method == "POST":
-        #if not can_edit(**get_auth_vars(request)):
+        #if not load_can_edit()(request, **get_auth_vars(request)):
         #    return HttpResponseForbidden()
         
         form = BoxForm(request.POST, instance=box)
@@ -40,7 +40,7 @@ def box_edit(request, pk):
 
 def box_create(request, label):
     if request.method == "POST":
-        #if not can_edit(**get_auth_vars(request)):
+        #if not load_can_edit()(request, **get_auth_vars(request)):
         #    return HttpResponseForbidden()
         
         form = BoxForm(request.POST)
