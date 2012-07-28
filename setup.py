@@ -10,6 +10,10 @@ setup(
     long_description = open("README.rst").read(),
     license = "BSD",
     url = "http://github.com/eldarion/boxes",
+    install_requires = [
+        "django-markitup",
+        "django-reversion",
+    ],
     packages = [
         "boxes",
         "boxes.templatetags",
