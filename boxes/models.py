@@ -14,6 +14,7 @@ class Box(models.Model):
     
     created_by = models.ForeignKey(User, related_name="boxes")
     last_updated_by = models.ForeignKey(User, related_name="updated_boxes")
+    last_updated = models.DateTimeField(default=datetime.datetime.now)
     
     def __unicode__(self):
         return self.label

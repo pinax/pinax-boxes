@@ -1,3 +1,5 @@
+import datetime
+
 from django.http import HttpResponseForbidden
 from django.shortcuts import redirect
 from django.views.decorators.http import require_POST
@@ -27,6 +29,7 @@ def box_edit(request, label):
             box.label = label
             box.created_by = request.user
             box.last_updated_by = request.user
+            box.last_updated = datetime.datetime.now()
             box.save()
         else:
             form.save()
