@@ -1,7 +1,11 @@
 import datetime
+import json
 
-from django.http import HttpResponseForbidden
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import redirect
+from django.template import RequestContext
+from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
 
 from boxes.forms import BoxForm
@@ -33,4 +37,15 @@ def box_edit(request, label):
             box.save()
         else:
             form.save()
+        
+        if request.is_ajax():
+            data = {
+                "html": render_to_string("boxes/box.html", {
+                    "label": label,
+                    "form": BoxForm(instance=box, prefix=label),
+                    "box": box,
+                    "form_action": reverse("box_edit", args=[label])
+                }, context_instance=RequestContext(request))
+            }
+            return HttpResponse(json.dumps(data), mimetype="application/json")
         return redirect(next)
