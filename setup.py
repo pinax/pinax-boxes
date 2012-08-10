@@ -11,7 +11,6 @@ setup(
     license = "BSD",
     url = "http://github.com/eldarion/boxes",
     install_requires = [
-        "django-markitup",
         "django-reversion",
     ],
     packages = [

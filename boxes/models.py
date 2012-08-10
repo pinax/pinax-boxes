@@ -6,13 +6,11 @@ from django.contrib.auth.models import User
 
 import reversion
 
-from markitup.fields import MarkupField
-
 
 class Box(models.Model):
     
     label = models.CharField(max_length=100, db_index=True)
-    content = MarkupField(blank=True)
+    content = models.TextField(blank=True)
     
     created_by = models.ForeignKey(User, related_name="boxes")
     last_updated_by = models.ForeignKey(User, related_name="updated_boxes")
@@ -22,5 +20,6 @@ class Box(models.Model):
     
     class Meta:
         verbose_name_plural = "boxes"
+
 
 reversion.register(Box)
