@@ -1,6 +1,12 @@
 from django.contrib import admin
 
+import reversion
+
 from boxes.models import Box
 
 
-admin.site.register(Box)
+class BoxAdmin(reversion.VersionAdmin):
+    search_fields = ["content"]
+
+
+admin.site.register(Box, BoxAdmin)
