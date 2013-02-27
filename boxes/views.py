@@ -1,4 +1,3 @@
-import datetime
 import json
 
 from django.core.urlresolvers import reverse
@@ -6,6 +5,7 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import redirect
 from django.template import RequestContext
 from django.template.loader import render_to_string
+from django.utils import timezone
 from django.views.decorators.http import require_POST
 
 from boxes.forms import BoxForm
