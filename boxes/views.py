@@ -17,38 +17,32 @@ from boxes.models import Box
 @require_POST
 @permission_required("boxes.change_box", raise_exception=True)
 def box_edit(request, label):
+    box, _ = Box.objects.get_or_create(label=label, defaults={
+        "created_by": request.user,
+        "last_updated_by": request.user
+    })
+    form = BoxForm(request.POST, instance=box, prefix=label)
     
     if not form.is_valid():
         return HttpResponseBadRequest()  # not sure how this will ever happen
     
-    next = request.GET.get("next")
+    box = form.save(commit=False)
+    box.last_updated_by = request.user
+    box.last_updated = timezone.now()
+    box.save()
     
-    try:
-        box = Box.objects.get(label=label)
-    except Box.DoesNotExist:
-        box = None
+    if not request.is_ajax():
+        return redirect(
+            request.POST.get("next", request.GET.get("next", request.path))
+        )
     
-    form = BoxForm(request.POST, instance=box, prefix=label)
-    
-    if form.is_valid():
-        if box is None:
-            box = form.save(commit=False)
-            box.label = label
-            box.created_by = request.user
-            box.last_updated_by = request.user
-            box.last_updated = datetime.datetime.now()
-            box.save()
-        else:
-            form.save()
-        
-        if request.is_ajax():
-            data = {
-                "html": render_to_string("boxes/box.html", {
-                    "label": label,
-                    "form": BoxForm(instance=box, prefix=label),
-                    "box": box,
-                    "form_action": reverse("box_edit", args=[label])
-                }, context_instance=RequestContext(request))
-            }
-            return HttpResponse(json.dumps(data), mimetype="application/json")
-        return redirect(next)
+    data = {
+        "html": render_to_string("boxes/_box_body.html", {
+            "label": label,
+            "form": BoxForm(instance=box, prefix=label),
+            "box": box,
+            "form_action": reverse("box_edit", args=[label]),
+            "saved": True
+        }, context_instance=RequestContext(request))
+    }
+    return HttpResponse(json.dumps(data), mimetype="application/json")

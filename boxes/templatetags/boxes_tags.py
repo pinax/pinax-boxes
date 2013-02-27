@@ -8,7 +8,7 @@ from boxes.forms import BoxForm
 register = template.Library()
 
 
-@register.inclusion_tag("boxes/box.html", takes_context=True)
+@register.inclusion_tag("boxes/_box.html", takes_context=True)
 def box(context, label, show_edit=True, *args, **kwargs):
     
     request = context["request"]
