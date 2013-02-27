@@ -8,15 +8,16 @@ from django.template.loader import render_to_string
 from django.utils import timezone
 from django.views.decorators.http import require_POST
 
+from django.contrib.auth.decorators import permission_required
+
 from boxes.forms import BoxForm
 from boxes.models import Box
 
 
 @require_POST
+@permission_required("boxes.change_box", raise_exception=True)
 def box_edit(request, label):
     
-    if not request.user.has_perm("boxes.change_box"):
-        return HttpResponseForbidden()
     
     next = request.GET.get("next")
     
