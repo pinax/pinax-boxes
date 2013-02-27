@@ -1,7 +1,7 @@
 import json
 
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import redirect
 from django.template import RequestContext
 from django.template.loader import render_to_string
@@ -18,6 +18,8 @@ from boxes.models import Box
 @permission_required("boxes.change_box", raise_exception=True)
 def box_edit(request, label):
     
+    if not form.is_valid():
+        return HttpResponseBadRequest()  # not sure how this will ever happen
     
     next = request.GET.get("next")
     
