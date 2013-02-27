@@ -1,11 +1,16 @@
 from django.contrib import admin
 
-import reversion
+try:
+    import reversion
+    AdminBase = reversion.VersionAdmin
+except ImportError:
+    AdminBase = admin.ModelAdmin
 
 from boxes.models import Box
 
 
-class BoxAdmin(reversion.VersionAdmin):
+class BoxAdmin(AdminBase):
+    list_display = ["label", "created_by", "last_updated_by", "last_updated"]
     search_fields = ["content"]
 
 
