@@ -32,4 +32,5 @@ def box(context, label, show_edit=True, *args, **kwargs):
         "form": form,
         "form_action": form_action,
     })
+    context.update(kwargs)
     return context

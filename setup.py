@@ -3,7 +3,7 @@ from distutils.core import setup
 
 setup(
     name = "django-boxes",
-    version = "2.0b3",
+    version = "2.0b4",
     author = "Eldarion",
     author_email = "development@eldarion.com",
     description = "a reusable Django content-boxes application",
