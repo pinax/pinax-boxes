@@ -26,10 +26,10 @@ def box(context, label, show_edit=True, *args, **kwargs):
         form = None
         form_action = None
     
-    return {
-        "request": request,
+    context.update({
         "label": label,
         "box": box,
         "form": form,
         "form_action": form_action,
-    }
+    })
+    return context
