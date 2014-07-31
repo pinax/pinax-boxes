@@ -22,20 +22,20 @@ def box_edit(request, label):
         "last_updated_by": request.user
     })
     form = BoxForm(request.POST, instance=box, prefix=label)
-    
+
     if not form.is_valid():
         return HttpResponseBadRequest()  # not sure how this will ever happen
-    
+
     box = form.save(commit=False)
     box.last_updated_by = request.user
     box.last_updated = timezone.now()
     box.save()
-    
+
     if not request.is_ajax():
         return redirect(
             request.POST.get("next", request.GET.get("next", request.path))
         )
-    
+
     data = {
         "html": render_to_string("boxes/_box_body.html", {
             "label": label,
