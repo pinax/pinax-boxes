@@ -1,14 +1,14 @@
 from django import template
 from django.core.urlresolvers import reverse
 
-from boxes.models import Box
-from boxes.forms import BoxForm
+from ..forms import BoxForm
+from ..models import Box
 
 
 register = template.Library()
 
 
-@register.inclusion_tag("boxes/_box.html", takes_context=True)
+@register.inclusion_tag("pinax/boxes/_box.html", takes_context=True)
 def box(context, label, show_edit=True, *args, **kwargs):
 
     request = context["request"]

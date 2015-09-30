@@ -1,7 +1,5 @@
-import json
-
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import JsonResponse, HttpResponseBadRequest
 from django.shortcuts import redirect
 from django.template import RequestContext
 from django.template.loader import render_to_string
@@ -10,8 +8,8 @@ from django.views.decorators.http import require_POST
 
 from django.contrib.auth.decorators import permission_required
 
-from boxes.forms import BoxForm
-from boxes.models import Box
+from .forms import BoxForm
+from .models import Box
 
 
 @require_POST
@@ -45,4 +43,4 @@ def box_edit(request, label):
             "saved": True
         }, context_instance=RequestContext(request))
     }
-    return HttpResponse(json.dumps(data), mimetype="application/json")
+    return JsonResponse(data)

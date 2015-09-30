@@ -1,2 +1,5 @@
+include AUTHORS
+include LICENSE
 include README.rst
-recursive-include boxes/templates *
+recursive-include pinax/boxes/static *
+recursive-include pinax/boxes/templates *

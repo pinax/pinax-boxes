@@ -6,7 +6,7 @@ try:
 except ImportError:
     AdminBase = admin.ModelAdmin
 
-from boxes.models import Box
+from .models import Box
 
 
 class BoxAdmin(AdminBase):

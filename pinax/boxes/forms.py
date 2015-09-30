@@ -1,6 +1,6 @@
 from django import forms
 
-from boxes.models import Box
+from .models import Box
 
 
 class BoxForm(forms.ModelForm):
