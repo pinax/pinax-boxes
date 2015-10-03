@@ -16,7 +16,7 @@ setup(
     description="An app for including boxes of admin-controllable content in templates.",
     name="pinax-boxes",
     long_description=read("README.rst"),
-    version="2.0.1",
+    version="2.1.0",
     url="http://github.com/pinax/pinax-boxes/",
     license="MIT",
     packages=find_packages(),
@@ -25,6 +25,9 @@ setup(
     },
     test_suite="runtests.runtests",
     tests_require=[
+    ],
+    install_requires=[
+        "django-appconf>=1.0.1"
     ],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
