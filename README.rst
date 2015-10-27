@@ -1,7 +1,6 @@
 Pinax Boxes
 ===========
 
-An app for including boxes of admin-controllable content in templates.
 
 .. image:: http://slack.pinaxproject.com/badge.svg
    :target: http://slack.pinaxproject.com/
@@ -27,6 +26,11 @@ Pinax
 
 Pinax is an open-source platform built on the Django Web Framework. It is an ecosystem of reusable Django apps, themes, and starter project templates.
 This collection can be found at http://pinaxproject.com.
+
+pinax-boxes
+------------
+
+An app for including boxes of admin-controllable content in templates.
 
 
 Running the Tests
