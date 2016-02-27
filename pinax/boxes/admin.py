@@ -1,8 +1,7 @@
 from django.contrib import admin
 
 try:
-    import reversion
-    AdminBase = reversion.VersionAdmin
+    from reversion.admin import VersionAdmin as AdminBase
 except ImportError:
     AdminBase = admin.ModelAdmin
 
