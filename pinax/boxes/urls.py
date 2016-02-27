@@ -1,9 +1,8 @@
-from django.conf.urls import url, patterns
+from django.conf.urls import url
 
 from .views import box_edit
 
 
-urlpatterns = patterns(
-    "",
+urlpatterns = [
     url(r"^([-\w]+)/edit/$", box_edit, name="box_edit"),
-)
+]
