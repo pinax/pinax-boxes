@@ -16,7 +16,7 @@ setup(
     description="An app for including boxes of admin-controllable content in templates.",
     name="pinax-boxes",
     long_description=read("README.rst"),
-    version="2.1.1",
+    version="2.1.2",
     url="http://github.com/pinax/pinax-boxes/",
     license="MIT",
     packages=find_packages(),
