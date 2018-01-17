@@ -1,4 +1,4 @@
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.shortcuts import redirect
 from django.template import RequestContext

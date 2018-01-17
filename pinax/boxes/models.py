@@ -11,8 +11,8 @@ class Box(models.Model):
     label = models.CharField(max_length=100, db_index=True)
     content = models.TextField(blank=True)
     content_html = models.TextField(blank=True)
-    created_by = models.ForeignKey(User, related_name="boxes")
-    last_updated_by = models.ForeignKey(User, related_name="updated_boxes")
+    created_by = models.ForeignKey(User, related_name="boxes", on_delete=models.CASCADE)
+    last_updated_by = models.ForeignKey(User, related_name="updated_boxes", on_delete=models.CASCADE)
     last_updated = models.DateTimeField(default=timezone.now)
 
     def __unicode__(self):

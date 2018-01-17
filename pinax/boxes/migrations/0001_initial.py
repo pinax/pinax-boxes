@@ -20,8 +20,8 @@ class Migration(migrations.Migration):
                 ('label', models.CharField(max_length=100, db_index=True)),
                 ('content', models.TextField(blank=True)),
                 ('last_updated', models.DateTimeField(default=django.utils.timezone.now)),
-                ('created_by', models.ForeignKey(related_name='boxes', to=settings.AUTH_USER_MODEL)),
-                ('last_updated_by', models.ForeignKey(related_name='updated_boxes', to=settings.AUTH_USER_MODEL)),
+                ('created_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='boxes', to=settings.AUTH_USER_MODEL)),
+                ('last_updated_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='updated_boxes', to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'verbose_name_plural': 'boxes',
