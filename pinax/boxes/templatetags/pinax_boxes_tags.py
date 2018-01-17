@@ -1,5 +1,5 @@
 from django import template
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from ..forms import BoxForm
 from ..models import Box
