@@ -4,7 +4,6 @@ from django.urls import reverse
 from ..forms import BoxForm
 from ..models import Box
 
-
 register = template.Library()
 
 

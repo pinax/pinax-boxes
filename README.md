@@ -2,6 +2,8 @@
 
 [![](https://img.shields.io/pypi/v/pinax-boxes.svg)](https://pypi.python.org/pypi/pinax-boxes/)
 
+[![CircleCi](https://img.shields.io/circleci/project/github/pinax/pinax-boxes.svg)](https://circleci.com/gh/pinax/pinax-boxes)
+[![Codecov](https://img.shields.io/codecov/c/github/pinax/pinax-boxes.svg)](https://codecov.io/gh/pinax/pinax-boxes)
 [![](https://img.shields.io/github/contributors/pinax/pinax-boxes.svg)](https://github.com/pinax/pinax-boxes/graphs/contributors)
 [![](https://img.shields.io/github/issues-pr/pinax/pinax-boxes.svg)](https://github.com/pinax/pinax-boxes/pulls)
 [![](https://img.shields.io/github/issues-pr-closed/pinax/pinax-boxes.svg)](https://github.com/pinax/pinax-boxes/pulls?q=is%3Apr+is%3Aclosed)
@@ -14,6 +16,7 @@
 
 * [About Pinax](#about-pinax)
 * [Overview](#overview)
+  * [Supported Django and Python versions](#supported-django-and-python-versions)
 * [Documentation](#documentation)
   * [Installation](#installation)
 * [Change Log](#change-log)
@@ -34,6 +37,13 @@ Django apps, themes, and starter project templates. This collection can be found
 ### Overview
 
 `pinax-boxes` is an app for including boxes of admin-controllable content in templates.
+
+#### Supported Django and Python versions
+
+Django \ Python | 2.7 | 3.4 | 3.5 | 3.6
+--------------- | --- | --- | --- | ---
+1.11 |  *  |  *  |  *  |  *  
+2.0  |     |  *  |  *  |  *
 
 
 ## Documentation
@@ -68,6 +78,14 @@ Lastly add `pinax.boxes.urls` to your project urlpatterns:
 
 
 ## Change Log
+
+### 3.0.2
+
+* Add Django 2.0 compatibility testing
+* Drop Django 1.8, 1.9, 1.10, and Python 3.3 support
+* Move documentation into README and standardize layout
+* Convert CI and coverage to CircleCi and CodeCov
+* Add PyPi-compatible long description
 
 
 ## Contribute

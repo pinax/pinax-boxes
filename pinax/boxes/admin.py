@@ -1,11 +1,11 @@
 from django.contrib import admin
 
+from .models import Box
+
 try:
     from reversion.admin import VersionAdmin as AdminBase
 except ImportError:
     AdminBase = admin.ModelAdmin
-
-from .models import Box
 
 
 class BoxAdmin(AdminBase):

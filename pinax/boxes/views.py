@@ -1,12 +1,11 @@
-from django.urls import reverse
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.contrib.auth.decorators import permission_required
+from django.http import HttpResponseBadRequest, JsonResponse
 from django.shortcuts import redirect
 from django.template import RequestContext
 from django.template.loader import render_to_string
+from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.http import require_POST
-
-from django.contrib.auth.decorators import permission_required
 
 from .forms import BoxForm
 from .models import Box
